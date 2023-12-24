@@ -10,7 +10,11 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Home() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>();
   const [Loading, setLoading] = useState(false);
   const { setVideo, setSrt, video, srt } = useVideo();
   const [playerObj, setPlayer] = useState<any>();
@@ -93,16 +97,16 @@ export default function Home() {
               style={{
                 direction: "ltr",
               }}
-              className="w-full flex flex-col items vstack justify-center px-5 py-5"
+              className="w-full flex flex-col items vstack justify-center px-5"
             >
-              <div className="hstack my-5 justify-center">
+              <div className="hstack mb-5 justify-center">
                 <Link href={srt} className="vstack" download={downloadLink}>
                   <FaCloudDownloadAlt className="text-red-500 text-3xl" />
                   <p className="text-center text-xs text-zinc-300">زیرنویس</p>
                 </Link>
               </div>
-              <h3 className="text-sm text-red-400 w-[95%]">{title}</h3>
-              <p className="text-sm text-zinc-500 whitespace-pre-line w-[95%] mt-3">
+              <h3 className="text-lg text-red-400 w-[95%]">{title}</h3>
+              <p className="text-sm text-zinc-500 whitespace-pre-line w-[95%] mt-3 mb-10">
                 {description}
               </p>
             </div>
@@ -118,12 +122,36 @@ export default function Home() {
               لینک ویدیوی مورد نظر خود را وارد کنید
             </p>
             <Form
-              register={register("link")}
+              register={register("link", {
+                required: true,
+                pattern: {
+                  value:
+                    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/,
+                  message: "لینک وارد شده معتبر نیست",
+                },
+                max: {
+                  value: 200,
+                  message: "لینک وارد شده معتبر نیست",
+                },
+              })}
               handleSubmit={handleSubmit(onSubmit)}
             />
+            {errors?.link && (
+              <p className="text-xs text-red-500 mt-2">
+                {errors?.link.message as any}
+              </p>
+            )}
           </div>
         )}
       </>
+      <div className="fixed bottom-5 text-xs center w-full">
+        <p>
+          Developed by{" "}
+          <span className="text-red-500 text-[16px] font-semibold">
+            Sabber Soltani
+          </span>{" "}
+        </p>
+      </div>
     </>
   );
 }

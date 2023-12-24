@@ -11,26 +11,28 @@ type Props = {
 const Form = ({ register, handleSubmit }: Props) => {
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <Input
+      <form
+        onSubmit={handleSubmit}
+        className="hstack"
+        style={{
+          direction: "ltr",
+        }}
+      >
+        <input
           type="text"
           style={{
             direction: "ltr",
           }}
           placeholder="youtube.com"
           {...register}
-          labelPlacement="outside"
-          className="w-80"
-          variant="faded"
-          startContent={
-            <button
-              type="submit"
-              className="pointer-events-none flex items-center"
-            >
-              <IoMdSearch className="w-5 h-5" />
-            </button>
-          }
+          className="w-72 h-12 bg-secondary text-zinc-200 px-3 rounded-l-xl overflow-hidden outline-none border-none"
         />
+        <button
+          type="submit"
+          className="pointer-events-none center bg-secondary rounded-r-xl w-14 h-12"
+        >
+          <IoMdSearch className="w-5 h-5" />
+        </button>
       </form>
     </div>
   );
