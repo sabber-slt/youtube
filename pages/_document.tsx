@@ -1,13 +1,18 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
-      <Head />
+    <Html dir="rtl" lang="fa-IR" className="dark">
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#0F0F0F" />
+        <meta name="application-name" content="Raybod" />
+        <meta name="mobile-web-app-capable" content="yes" />
+      </Head>
       <body>
         <Main />
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }
