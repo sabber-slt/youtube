@@ -8,6 +8,7 @@ import "openplayerjs/dist/openplayer.css";
 import Nav from "@/components/Nav";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import Link from "next/link";
+import SEO from "@/components/SEO";
 
 export default function Home() {
   const {
@@ -73,6 +74,7 @@ export default function Home() {
   };
   return (
     <>
+      <SEO />
       <Nav />
       {Loading && <LoadingAnim />}
       <>
