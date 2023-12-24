@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0F0F0F" />
-        <meta name="application-name" content="Raybod" />
+        <meta name="application-name" content="YTB" />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
       <body>

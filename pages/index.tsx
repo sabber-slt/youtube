@@ -92,6 +92,9 @@ export default function Home() {
                   kind="subtitles"
                   srcLang="fa"
                   default
+                  style={{
+                    direction: "rtl",
+                  }}
                   src={srt}
                   label="Farsi"
                 />
