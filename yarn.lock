@@ -1885,6 +1885,11 @@
   resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.7.tgz#8dbb2f24bdc7486c54aa854eb414940bbd056f7d"
   integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
 
+"@types/google-translate-api@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/@types/google-translate-api/-/google-translate-api-2.3.5.tgz#675c0585b9ea5350fd402673cf01156b68845631"
+  integrity sha512-uW3fdwTrZXktEitB9DojKP7G8K1R7XqravOJLSDrHvnOZTAZ9oEvP4l27i84X+F0FkPfgzLICIX9zYfVjuMtew==
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
@@ -3101,6 +3106,11 @@ globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
+
+google-translate-api-browser@^4.2.7:
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/google-translate-api-browser/-/google-translate-api-browser-4.2.7.tgz#18040d849ce5abe49bc6fea6192920d3a2c39c29"
+  integrity sha512-4FG2YBXMFYbuPHT03zvL5/A6UnPRrsdb0fMy0tPZaijMMHVPciFlgfd+dTtXr3nNtc1Baybo0m9eSYhqKnVyDg==
 
 gopd@^1.0.1:
   version "1.0.1"

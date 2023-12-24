@@ -62,9 +62,11 @@ export default function Home() {
     const srtContent = `data:text/plain;charset=utf-8,${encodeURIComponent(
       result?.data?.srt
     )}`;
+
     setDownloadLink(srtContent);
     setVideo(result?.data?.url);
     setSrt(result?.data?.srt);
+
     setTitle(result?.data?.title);
     setDescription(result?.data?.description);
     setLoading(false);
@@ -80,7 +82,7 @@ export default function Home() {
               style={{
                 direction: "ltr",
               }}
-              className="w-full h-80 aspect-video"
+              className="w-full aspect-video"
             >
               <video id="my-player" playsInline className="op-player__media">
                 <source src={video} />
@@ -105,8 +107,8 @@ export default function Home() {
                   <p className="text-center text-xs text-zinc-300">زیرنویس</p>
                 </Link>
               </div>
-              <h3 className="text-lg text-red-400 w-[95%]">{title}</h3>
-              <p className="text-sm text-zinc-500 whitespace-pre-line w-[95%] mt-3 mb-10">
+              <h3 className="text-lg text-red-400 w-[90%]">{title}</h3>
+              <p className="text-sm text-zinc-500 whitespace-pre-line w-[90%] mt-3 mb-10">
                 {description}
               </p>
             </div>

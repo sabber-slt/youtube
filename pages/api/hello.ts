@@ -39,7 +39,7 @@ export default async function handler(
     } catch (error) {
       console.error(error);
 
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ error: "لینک وارد شده معتبر نمی‌باشد" });
     }
   }
 }
