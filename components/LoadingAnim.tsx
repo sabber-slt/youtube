@@ -8,7 +8,7 @@ const LoadingAnim = (props: Props) => {
   return (
     <div className="w-full h-screen center">
       <div className="w-full fixed top-0 h-screen bg-background z-50 center">
-        <div className="relative w-36 h-36 center lg:w-96 lg:h-64">
+        <div className="relative w-20 h-20 center lg:w-96 lg:h-64">
           <Lottie
             loop
             animationData={lottieJson}
