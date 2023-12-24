@@ -109,7 +109,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="w-full h-screen vstack justify-center -mt-16 lg:hidden">
-            <h3 className="text-xl font-[800] w-80 text-center mb-20">
+            <h3 className="text-xl font-[800] w-80 text-center mb-5">
               <span className="text-red-500 text-3xl">Youtube</span>
               <br />
               را با زیر نویس فارسی ببینید
