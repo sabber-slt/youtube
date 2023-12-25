@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import HttpsProxyAgent from "https-proxy-agent";
 import { getCaptions, getVideo } from "@/utils/youtube";
+import subsrt from "subsrt-ts";
 
 export default async function handler(
   req: NextApiRequest,
@@ -27,11 +28,19 @@ export default async function handler(
       if (!video || !captions) {
         return res.status(404).json({ error: "Video or captions not found" });
       }
+      const ddd = await fetch(captions.subtitle);
+      const url = await ddd.text();
+      var capt = subsrt.parse(url);
 
+      const newCap = subsrt.build(capt, {
+        format: "srt",
+        eol: "\r\n",
+        verbose: true,
+      });
       res.status(200).json({
         data: {
           url: video ? video : null,
-          srt: captions ? captions.subtitle : null,
+          srt: captions ? newCap : null,
           description: captions ? captions.description : null,
           title: captions ? captions.title : null,
         },

@@ -9,6 +9,7 @@ import Nav from "@/components/Nav";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import Link from "next/link";
 import SEO from "@/components/SEO";
+import { getSubtitles } from "@/utils/subtitle";
 
 export default function Home() {
   const {
@@ -22,18 +23,19 @@ export default function Home() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [downloadLink, setDownloadLink] = useState<any>();
+  const [srt1, setSrt1] = useState<any>();
 
   useEffect(() => {
     const player = new OpenPlayerJS("my-player", {
       width: "100%",
       height: 300,
-      mode: "responsive",
+      mode: "fit",
       controls: {
-        alwaysVisible: true,
+        alwaysVisible: false,
         layers: {
           left: ["play", "time", "volume"],
           middle: ["progress"],
-          right: ["captions", "settings", "fullscreen"],
+          right: ["captions", "fullscreen"],
         },
       },
     });
@@ -59,14 +61,18 @@ export default function Home() {
       setLoading(false);
       return;
     }
-    console.log(result);
     const srtContent = `data:text/plain;charset=utf-8,${encodeURIComponent(
       result?.data?.srt
     )}`;
 
     setDownloadLink(srtContent);
     setVideo(result?.data?.url);
-    setSrt(result?.data?.srt);
+
+    const txtContent = `data:text/plain;charset=utf-8,${encodeURIComponent(
+      result?.data?.srt
+    )}`;
+    setSrt1(txtContent);
+    setSrt(txtContent);
 
     setTitle(result?.data?.title);
     setDescription(result?.data?.description);
@@ -84,17 +90,15 @@ export default function Home() {
               style={{
                 direction: "ltr",
               }}
-              className="w-full aspect-video"
+              className="w-full aspect-video whitespace-pre-line text-sm  font-semibold break-words hyphens-auto "
             >
-              <video id="my-player" playsInline className="op-player__media">
+              <video id="my-player" playsInline className="op-player__media ">
                 <source src={video} />
+
                 <track
                   kind="subtitles"
                   srcLang="fa"
                   default
-                  style={{
-                    direction: "rtl",
-                  }}
                   src={srt}
                   label="Farsi"
                 />
@@ -107,10 +111,10 @@ export default function Home() {
               className="w-full flex flex-col items vstack justify-center px-5"
             >
               <div className="hstack mb-5 justify-center">
-                <Link href={srt} className="vstack" download={downloadLink}>
+                {/* <Link href={srt} className="vstack" download={downloadLink}>
                   <FaCloudDownloadAlt className="text-red-500 text-3xl" />
                   <p className="text-center text-xs text-zinc-300">زیرنویس</p>
-                </Link>
+                </Link> */}
               </div>
               <h3 className="text-lg text-red-400 w-[90%]">{title}</h3>
               <p className="text-sm text-zinc-500 whitespace-pre-line w-[90%] mt-3 mb-10">
