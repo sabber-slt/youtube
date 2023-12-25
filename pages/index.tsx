@@ -10,6 +10,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import Link from "next/link";
 import SEO from "@/components/SEO";
 import { getSubtitles } from "@/utils/subtitle";
+import ReactPlayer from "react-player/lazy";
 
 export default function Home() {
   const {
@@ -29,7 +30,7 @@ export default function Home() {
     const player = new OpenPlayerJS("my-player", {
       width: "100%",
       height: 300,
-      mode: "fit",
+      mode: "responsive",
       controls: {
         alwaysVisible: false,
         layers: {
@@ -90,7 +91,7 @@ export default function Home() {
               style={{
                 direction: "ltr",
               }}
-              className="w-full aspect-video whitespace-pre-line text-sm  font-semibold break-words hyphens-auto "
+              className="w-full aspect-video whitespace-pre-line text-sm outline-0 font-semibold break-words hyphens-auto "
             >
               <video id="my-player" playsInline className="op-player__media ">
                 <source src={video} />
@@ -111,10 +112,10 @@ export default function Home() {
               className="w-full flex flex-col items vstack justify-center px-5"
             >
               <div className="hstack mb-5 justify-center">
-                {/* <Link href={srt} className="vstack" download={downloadLink}>
+                <Link href={srt} className="vstack" download={downloadLink}>
                   <FaCloudDownloadAlt className="text-red-500 text-3xl" />
                   <p className="text-center text-xs text-zinc-300">زیرنویس</p>
-                </Link> */}
+                </Link>
               </div>
               <h3 className="text-lg text-red-400 w-[90%]">{title}</h3>
               <p className="text-sm text-zinc-500 whitespace-pre-line w-[90%] mt-3 mb-10">

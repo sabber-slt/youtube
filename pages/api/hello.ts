@@ -40,7 +40,7 @@ export default async function handler(
       res.status(200).json({
         data: {
           url: video ? video : null,
-          srt: captions ? newCap : null,
+          srt: captions ? url : null,
           description: captions ? captions.description : null,
           title: captions ? captions.title : null,
         },
