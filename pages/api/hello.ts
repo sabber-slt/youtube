@@ -50,8 +50,8 @@ export default async function handler(
       if (!video) {
         return res.status(404).json({ error: "Video or captions not found" });
       }
-      const cc = await cleanAllSubs(captions.enSubtitle);
-      const fa = await cleanAllSubs(captions.subtitle);
+      const cc = await cleanAllSubs(captions.enSubtitle, "en");
+      const fa = await cleanAllSubs(captions.subtitle, "fa");
 
       res.status(200).json({
         data: {

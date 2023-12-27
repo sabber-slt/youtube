@@ -35,15 +35,30 @@ function cleanSubtitles(srtContent: any) {
   return cleanedLines.join("\n");
 }
 
-export const cleanAllSubs = async (sub: string) => {
+export const cleanAllSubs = async (sub: string, lang: string) => {
   const cc = await fetch(sub);
   const result = await cc.text();
   var sss = subsrt.parse(result);
-  var resynced = subsrt.resync(sss, { offset: -2200 });
+  if (lang === "fa") {
+    var sss1 = sss.map((item: any) => {
+      return {
+        ...item,
+        text: `<bdi dir="rtl">${item.text}</bdi>`,
+      };
+    });
+    var resynced = subsrt.resync(sss1, (a) => [a[0], a[1] + 500]);
+    var resynced = subsrt.resync(resynced, { offset: -2300 });
+  } else {
+    var resynced = subsrt.resync(sss, (a) => [a[0], a[1] + 500]);
+
+    var resynced = subsrt.resync(resynced, { offset: -2300 });
+  }
+
   var options = { format: "vtt" };
   var content = subsrt.build(resynced, options);
 
-  content = cleanSubtitles(content);
-
+  if (lang === "fa") {
+    content = cleanSubtitles(content);
+  }
   return content;
 };
