@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
+    "@tanstack/react-query": "^5.14.6",
+    "@tanstack/react-query-devtools": "^5.14.6",
     "add": "^2.0.6",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.16.16",
@@ -25,6 +27,9 @@
     "subsrt-ts": "^2.1.2",
     "yarn": "^1.22.21",
     "youtube-dl-exec": "^2.5.3",
+    "youtube-transcript": "^1.0.6",
+    "youtubei": "^1.2.1",
+    "youtubei.js": "^8.0.0",
     "ytdl-core": "^4.11.5",
     "zustand": "^4.4.7"
   },

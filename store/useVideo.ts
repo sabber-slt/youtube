@@ -3,7 +3,9 @@ import { devtools, persist } from "zustand/middleware";
 
 type CartStore = {
   srt: any | null;
+  enSrt: any | null;
   setSrt: (srt: any) => void;
+  setEnSrt: (srt: any) => void;
   video: any | null;
   setVideo: (video: any) => void;
 };
@@ -15,7 +17,9 @@ type CartStore = {
 
 export const useVideo = create<CartStore>()((set) => ({
   srt: null,
+  enSrt: null,
   video: null,
   setSrt: (srt: any) => set(() => ({ srt: srt })),
+  setEnSrt: (enSrt: any) => set(() => ({ enSrt: enSrt })),
   setVideo: (video: any) => set(() => ({ video: video })),
 }));

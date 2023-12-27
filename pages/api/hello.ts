@@ -3,6 +3,28 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import HttpsProxyAgent from "https-proxy-agent";
 import { getCaptions, getVideo } from "@/utils/youtube";
 import subsrt from "subsrt-ts";
+import { cleanAllSubs } from "@/utils/subtitle";
+
+function cleanSubtitles(srtContent: any) {
+  const lines = srtContent.split("\n");
+  let previousText = "";
+  let cleanedLines = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    // Check if line is a subtitle text
+    if (!line.match(/^\d+$/) && !line.match(/-->/)) {
+      if (line.trim() !== previousText.trim()) {
+        cleanedLines.push(line);
+        previousText = line;
+      }
+    } else {
+      cleanedLines.push(line); // Add non-subtitle text as is
+    }
+  }
+
+  return cleanedLines.join("\n");
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -25,24 +47,21 @@ export default async function handler(
       const video = await getVideo(link);
       const captions = (await getCaptions(link)) as any;
 
-      if (!video || !captions) {
+      if (!video) {
         return res.status(404).json({ error: "Video or captions not found" });
       }
-      const ddd = await fetch(captions.subtitle);
-      const url = await ddd.text();
-      var capt = subsrt.parse(url);
+      const cc = await cleanAllSubs(captions.enSubtitle);
+      const fa = await cleanAllSubs(captions.subtitle);
 
-      const newCap = subsrt.build(capt, {
-        format: "srt",
-        eol: "\r\n",
-        verbose: true,
-      });
       res.status(200).json({
         data: {
           url: video ? video : null,
-          srt: captions ? url : null,
+          srt: captions ? fa : null,
+          enSrt: captions ? cc : null,
           description: captions ? captions.description : null,
           title: captions ? captions.title : null,
+          downloadFa: captions ? captions.subtitle : null,
+          downloadEn: captions ? captions.enSubtitle : null,
         },
       });
     } catch (error) {

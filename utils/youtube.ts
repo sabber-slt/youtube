@@ -33,11 +33,13 @@ export const getCaptions = async (url: string) => {
     }).then(async (output) => {
       // @ts-ignore
       const subtitle = output.automatic_captions.fa[5].url;
+      const enSubtitle = output.automatic_captions.en[5].url;
       const title = output.fulltitle;
       const description = output.description;
 
       return {
         subtitle,
+        enSubtitle,
         title,
         description,
       };
