@@ -1,40 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YouTube Videos without Ads 🤖
 
-## Getting Started
+![Home / Landing Page](/public/github.png)
 
-First, run the development server:
+## Introduction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application allows you to watch YouTube videos without interruptions from ads. Additionally, it provides a feature to download subtitles in both Persian and English, enhancing the viewing experience for a broader audience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project was developed purely for educational purposes. The primary goal was to learn and explore the capabilities of programming in video streaming and subtitle extraction. It is important to note that this project is not intended for commercial use.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **Ad-Free Experience**: Watch YouTube videos without any advertisements.
+- **Subtitle Download**: Easily download subtitles in Persian and English for any video.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## How to Use
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the Repository**
 
-## Learn More
+   - Open your terminal.
+   - Run `git clone https://github.com/sabber-slt/youtube.git`.
+   - Navigate to the cloned directory.
 
-To learn more about Next.js, take a look at the following resources:
+2. **Setup the Environment**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Ensure node is installed on your system.
+   - Install necessary libraries: `yarn`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Run the Application**
 
-## Deploy on Vercel
+   - Execute the script: `yarn dev`.
+   - Follow the on-screen instructions to input the YouTube video URL.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Watching Videos**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   - The video will start playing in the application window.
+   - Enjoy an ad-free viewing experience.
+
+5. **Downloading Subtitles**
+   - Choose the option to download subtitles when prompted.
+   - Select the language (Persian or English).
+   - The subtitles will be downloaded to your local machine.
+
+## Contributions
+
+While this project is primarily for learning, contributions are welcome! If you have ideas for improvement or have found a bug, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is distributed under the MIT License. See `MIT` for more information.
+
+## Disclaimer
+
+This project is for educational purposes only. The developer is not responsible for any misuse or violation of YouTube's terms of service. Please use this application responsibly.
+
+---
+
+Thank you for visiting this repository! Enjoy exploring and using the YouTube Video Viewer without Ads!

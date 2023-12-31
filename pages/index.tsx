@@ -1,29 +1,44 @@
-import Form from "@/components/Form";
-import { set, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import LoadingAnim from "@/components/LoadingAnim";
-import { useVideo } from "@/store/useVideo";
+import React, { useEffect, useState } from "react";
 import OpenPlayerJS from "openplayerjs";
+import { useForm, SubmitHandler } from "react-hook-form";
 import "openplayerjs/dist/openplayer.css";
+
+import Form from "@/components/Form";
+import LoadingAnim from "@/components/LoadingAnim";
 import Nav from "@/components/Nav";
-import Link from "next/link";
 import SEO from "@/components/SEO";
 import { PiSubtitlesBold } from "react-icons/pi";
-import FileSaver from "file-saver";
+import Link from "next/link";
+
+import { useVideo } from "@/store/useVideo";
+
+interface IFormInput {
+  link: string;
+}
+
+interface IVideoData {
+  url: string;
+  srt: string;
+  enSrt: string;
+  title: string;
+  description: string;
+  downloadFa: string;
+  downloadEn: string;
+}
 
 export default function Home() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<any>();
-  const [Loading, setLoading] = useState(false);
+  } = useForm<IFormInput>();
+  const [loading, setLoading] = useState<boolean>(false);
   const { setVideo, setSrt, video, srt, enSrt, setEnSrt } = useVideo();
-  const [playerObj, setPlayer] = useState<any>();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [downloadLink, setDownloadLink] = useState<any>();
-  const [downloadLinkEn, setDownloadLinkEn] = useState<any>();
+  const [playerObj, setPlayer] = useState<OpenPlayerJS | null>(null);
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [downloadLink, setDownloadLink] = useState<string>("");
+  const [downloadLinkEn, setDownloadLinkEn] = useState<string>("");
 
   useEffect(() => {
     const player = new OpenPlayerJS("my-player", {
@@ -43,50 +58,50 @@ export default function Home() {
     setPlayer(player);
   }, [srt, video]);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setLoading(true);
-    const res = await fetch("/api/hello", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: data.link,
-      }),
-    });
+    try {
+      const res = await fetch("/api/video", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ link: data.link }),
+      });
 
-    const result = await res.json();
-    if (result.error) {
-      alert(result.error);
+      const result = await res.json();
+      if (result.error) {
+        alert(result.error);
+        setLoading(false);
+        return;
+      }
+
+      const srtContent = `data:text/plain;charset=utf-8,${encodeURIComponent(
+        result.data.downloadFa
+      )}`;
+      const srtContentEn = `data:text/plain;charset=utf-8,${encodeURIComponent(
+        result.data.downloadEn
+      )}`;
+
+      setDownloadLinkEn(srtContentEn);
+      setDownloadLink(srtContent);
+      setVideo(result.data.url);
+      setSrt(result.data.srt);
+      setEnSrt(result.data.enSrt);
+      setTitle(result.data.title);
+      setDescription(result.data.description);
+    } catch (error) {
+      console.error("Error submitting form: ", error);
+    } finally {
       setLoading(false);
-      return;
     }
-    console.log(result);
-    const srtContent = `data:text/plain;charset=utf-8,${encodeURIComponent(
-      result?.data?.downloadFa
-    )}`;
-
-    const srtContentEn = `data:text/plain;charset=utf-8,${encodeURIComponent(
-      result?.data?.downloadEn
-    )}`;
-
-    setDownloadLinkEn(srtContentEn);
-
-    setDownloadLink(srtContent);
-    setVideo(result?.data?.url);
-
-    setSrt(result?.data?.srt);
-    setEnSrt(result?.data?.enSrt);
-    setTitle(result?.data?.title);
-    setDescription(result?.data?.description);
-    setLoading(false);
   };
 
   return (
     <>
       <SEO />
       <Nav />
-      {Loading && <LoadingAnim />}
+      {loading && <LoadingAnim />}
       <>
         {video !== null ? (
           <div className="w-full">
@@ -158,19 +173,21 @@ export default function Home() {
               لینک ویدیوی مورد نظر خود را وارد کنید
             </p>
             <Form
-              register={register("link", {
-                required: true,
-                pattern: {
-                  value:
-                    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/,
-                  message: "لینک وارد شده معتبر نیست",
-                },
-                max: {
-                  value: 200,
-                  message: "لینک وارد شده معتبر نیست",
-                },
-              })}
-              handleSubmit={handleSubmit(onSubmit)}
+              register={
+                register("link", {
+                  required: true,
+                  pattern: {
+                    value:
+                      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/,
+                    message: "لینک وارد شده معتبر نیست",
+                  },
+                  max: {
+                    value: 200,
+                    message: "لینک وارد شده معتبر نیست",
+                  },
+                }) as any
+              }
+              handleSubmit={handleSubmit(onSubmit) as any}
             />
             {errors?.link && (
               <p className="text-xs text-red-500 mt-2">

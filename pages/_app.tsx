@@ -1,14 +1,15 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import { NextUIProvider } from "@nextui-org/react";
-import { Vazirmatn } from "next/font/google";
+import { useState } from "react";
 import {
   QueryClient,
   QueryClientProvider,
   HydrationBoundary,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useState } from "react";
+import { NextUIProvider } from "@nextui-org/react";
+import { Vazirmatn } from "next/font/google";
+import type { AppProps } from "next/app";
+import "@/styles/globals.css";
+
 const vazir = Vazirmatn({
   weight: ["500", "600", "700", "800"],
   style: ["normal"],

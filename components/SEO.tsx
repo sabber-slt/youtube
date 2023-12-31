@@ -1,9 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-type Props = {};
-
-const SEO = (props: Props) => {
+const SEO = () => {
   return (
     <Head>
       <title>YTB</title>

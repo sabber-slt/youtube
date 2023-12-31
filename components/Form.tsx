@@ -1,18 +1,23 @@
 import { Input } from "@nextui-org/react";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, UseFormRegister } from "react-hook-form";
 import { IoMdSearch } from "react-icons/io";
 
+interface FormValues {
+  // example field
+  link: string;
+}
+
 type Props = {
-  register: any;
-  handleSubmit: any;
+  register: UseFormRegister<FormValues>;
+  handleSubmit: SubmitHandler<FormValues>;
 };
 
 const Form = ({ register, handleSubmit }: Props) => {
   return (
     <div>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit as any}
         className="hstack"
         style={{
           direction: "ltr",

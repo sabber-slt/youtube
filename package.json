@@ -23,13 +23,9 @@
     "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
     "react-lottie-player": "^1.5.5",
-    "react-player": "^2.14.1",
     "subsrt-ts": "^2.1.2",
     "yarn": "^1.22.21",
     "youtube-dl-exec": "^2.5.3",
-    "youtube-transcript": "^1.0.6",
-    "youtubei": "^1.2.1",
-    "youtubei.js": "^8.0.0",
     "ytdl-core": "^4.11.5",
     "zustand": "^4.4.7"
   },

@@ -2,9 +2,7 @@ import React from "react";
 import Lottie from "react-lottie-player";
 import lottieJson from "../public/loading.json";
 
-type Props = {};
-
-const LoadingAnim = (props: Props) => {
+const LoadingAnim = () => {
   return (
     <div className="w-full h-screen center">
       <div className="w-full fixed top-0 h-screen bg-background z-50 center">
