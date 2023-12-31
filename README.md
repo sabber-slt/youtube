@@ -45,6 +45,11 @@ This project was developed purely for educational purposes. The primary goal was
 
 While this project is primarily for learning, contributions are welcome! If you have ideas for improvement or have found a bug, feel free to open an issue or submit a pull request.
 
+### Todo
+- [ ] Add back or reset button
+- [ ] Add unsupported size component for Desktop
+- [ ] Add repository link to Navbar with (GitHub icon)
+
 ## License
 
 This project is distributed under the MIT License. See `MIT` for more information.
