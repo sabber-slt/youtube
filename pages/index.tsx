@@ -197,7 +197,7 @@ export default function Home() {
           </div>
         )}
       </>
-      <div className="fixed bottom-5 text-xs center w-full">
+      <div className="fixed bottom-0 text-xs center w-full bg-[#0f0f0f] py-4">
         <p>
           Developed by{" "}
           <span className="text-red-500 text-[16px] font-semibold">
