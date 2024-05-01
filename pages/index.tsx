@@ -5,10 +5,6 @@ import "openplayerjs/dist/openplayer.css";
 
 import Form from "@/components/Form";
 import LoadingAnim from "@/components/LoadingAnim";
-import Nav from "@/components/Nav";
-import SEO from "@/components/SEO";
-import { PiSubtitlesBold } from "react-icons/pi";
-import Link from "next/link";
 
 import { useVideo } from "@/store/useVideo";
 import { useRouter } from "next/router";
@@ -18,16 +14,6 @@ interface IFormInput {
   link: string;
 }
 
-interface IVideoData {
-  url: string;
-  srt: string;
-  enSrt: string;
-  title: string;
-  description: string;
-  downloadFa: string;
-  downloadEn: string;
-}
-
 const Home = () => {
   const {
     register,
@@ -35,12 +21,8 @@ const Home = () => {
     formState: { errors },
   } = useForm<IFormInput>();
   const [loading, setLoading] = useState<boolean>(false);
-  const { setVideo, setSrt, video, srt, enSrt, setEnSrt } = useVideo();
-  const [playerObj, setPlayer] = useState<OpenPlayerJS | null>(null);
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [downloadLink, setDownloadLink] = useState<string>("");
-  const [downloadLinkEn, setDownloadLinkEn] = useState<string>("");
+  const { video, srt } = useVideo();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -58,7 +40,6 @@ const Home = () => {
       },
     });
     player.init();
-    setPlayer(player);
   }, [srt, video]);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
@@ -77,7 +58,9 @@ const Home = () => {
       <>
         <div className="w-full h-screen vstack justify-center -mt-16 hidden md:flex">
           <span className="text-red-500 text-[92px]">YTB</span>
-          <p className="text-medium mb-4">متاسفانه این سرویس تنها در گوشی‌های موبایل در دسترس می‌باشد</p>
+          <p className="text-medium mb-4">
+            این سرویس تنها در گوشی‌های موبایل در دسترس می‌باشد
+          </p>
         </div>
         <div className="w-full h-screen vstack justify-center -mt-16 lg:hidden">
           <h3 className="text-xl font-[800] w-80 text-center mb-5">
